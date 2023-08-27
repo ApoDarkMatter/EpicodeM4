@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(6,173,152);
+    background: linear-gradient(90deg, rgba(6,173,152,1) 0%, rgba(0,255,154,1) 92%);        
+}
+
+#logo {
+    width: 4rem;
+}
+
+.nav-item {
+    text-align: center;
+}
+
+#product-form {
+    margin-top: 2rem;
+}
+
+.red-required {
+    color: red;
+}
+
+.intro {
+    height: 100%;
+}
+
+#productsList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    margin: 1rem;
+    width: 18rem;
+}
+
+.card-body-detail {
+    margin: 1rem;
+}
+
+.card-img-top {
+    height: 17rem;
+    object-fit: cover;
+}
+
+.btn {
+    margin-bottom: 1rem;
+}
+
+th, td {
+    text-align: center;
+}
+
+.imgbackoffice {
+    width: 100px;
+}
+
+.description-title {
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    border-bottom: 1px solid red;
+}
+
+.price-text {
+    font-size: 1.1rem;
+    color: red;
+    font-weight: 600;
+}
+
+#imageViewer {
+    margin: 1rem;
+    text-align: center;
+    color: red;
+    font-weight: 500;
+}
+#imageViewer img {
+    width: 18rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .card {
+        width: 100vw;
+    }
+    .card-img-top {
+        height: 20rem;
+    }
+}
+
+.loader {
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    margin-top: 10rem;
+}
+  
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+
+.containerLoader {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
