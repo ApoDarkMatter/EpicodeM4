@@ -1,4 +1,4 @@
-//Dichiarazioni costanti elementi HTML  e query da URL
+//const declaration HTML element and URL query
 const apiUrl = "https://striveschool-api.herokuapp.com/api/product/"
 
 const nameInput = document.getElementById('name');
@@ -21,7 +21,7 @@ const stat = params.get("stat")
 
 const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGVhNGJlMTUxNWY0MTAwMTQ2OTdhMmYiLCJpYXQiOjE2OTMwNzY0NTAsImV4cCI6MTY5NDI4NjA1MH0.GLbruDI2UUxg85xnQxE0hVnzqR1iBCI3sEdbzhqNYuw"
 
-//Controllo input se sono vuoti per gestione aggiunta prodotti senza campi
+//Input control if one of them are blank to prevent add product empty
 const checkInput = () => {
   if (nameInput.value == "" || descriptionInput.value == "" || brandInput.value == "" || imageUrlInput.value == "" || priceInput.value == "" || checkImage == false) {
     return false
@@ -30,13 +30,13 @@ const checkInput = () => {
   }
 }
 
-//Evento che monitora il click del pulsante "Add/Modify"
+//Event to control click button Add/Modify
 form.addEventListener('submit', async (event) => {
 
   event.preventDefault();
 
   const product = {
-    //encode stringhe per gestione caratteri speciali
+    //String encode to prevent error on special carachter
     name: encodeURIComponent(nameInput.value),
     description: encodeURIComponent(descriptionInput.value),
     brand: encodeURIComponent(brandInput.value),
@@ -47,7 +47,7 @@ form.addEventListener('submit', async (event) => {
   let URL = ""
   let method = ""
  
-  //Controllo se su query string per impostare il corretto metodo al fetch per modifica o aggiunta
+  //URL query to assign correct method for add new product or modify
   if(id !== null && id !== "add") {
     URL = `${apiUrl}${id}`
     method = "PUT"
@@ -56,7 +56,7 @@ form.addEventListener('submit', async (event) => {
     method = "POST"
   }
 
-  //Esecuzione della fetch PUT o POST (determinata dal controllo appena sopra) per modifica o aggiuinta di nuovi prodotti
+  //Fetch PUT or POST
   if(checkInput()) {
     try {
       const response = await fetch(URL, {
@@ -81,7 +81,7 @@ form.addEventListener('submit', async (event) => {
   }
 })
 
-//Funzione per fare il fetch GET di uno specifico prodotto attraverso l'id
+//Fetch GET function for only one product from a ID
 async function fetchOneProduct(id) {
   try {
     const response = await fetch(`${apiUrl}${id}`, {
@@ -98,7 +98,7 @@ async function fetchOneProduct(id) {
 }
 
 const printFormProduct = (product) => {
-  //decodifica stringhe per gestione caratteri speciali
+  //string decode to prevent error on special carachter
   nameInput.value = decodeURIComponent(product.name)
   descriptionInput.value = decodeURIComponent(product.description)
   brandInput.value = decodeURIComponent(product.brand)
@@ -108,20 +108,20 @@ const printFormProduct = (product) => {
         
 };
 
-//Controllo della query string per modificare il titolo e il testo del pulsante a seconda se è per aggiungere o modificare un prodotto
+//URL query control to modify title and button name
 if(id != null && id != "add") {
   title.innerHTML = "Modify Product"
   button.innerHTML = "Modify"
   fetchOneProduct(id)
 }
 
-//Se l'URL non ha nessuna query allora carica la tabella con tutti i prodotti nella pagina backoffice
+//If URL query are black load table with all product
 if(id == null) {
   form.classList.add("d-none")
   fetchProducts()
 }
 
-//Funzione per il fetch GET di tutti i prodotti
+//Fetch GET for all products
 async function fetchProducts() {
   try {
     const response = await fetch(`${apiUrl}`, {
@@ -136,7 +136,7 @@ async function fetchProducts() {
   }
 }
 
-//Funzione per la stampa della tabella su pagina backoffice
+//Print function for all product table on backoffice page
 const printProduct = (allProducts) => {
   let tableHtml = ``
   tableHtml = `
@@ -153,7 +153,7 @@ const printProduct = (allProducts) => {
               `
   
   allProducts.forEach(element => {
-    //decodifica stringhe per gestione caratteri speciali
+    //string decoding to prevent error on spacial carachterde
     const name = decodeURIComponent(element.name)
     const description = decodeURIComponent(element.description)
     const brand = decodeURIComponent(element.brand)
@@ -180,7 +180,7 @@ const printProduct = (allProducts) => {
 }
 
 
-//Funzione per fetch DELETE per eliminazione prodotti
+//Fetch DELETE function to delete one product from ID
 async function deleteProduct(id) {
   if (confirm('Sei sicuro di voler eliminare questo prodotto?')) {
     try {
@@ -201,7 +201,7 @@ async function deleteProduct(id) {
   }
 }
 
-//Anteprima immagine caricata con gestione errore se immagine non trovata
+//Load image preview and control if there is a 404 error
 let timeout;
 let checkImage
 
