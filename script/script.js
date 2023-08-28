@@ -1,9 +1,9 @@
-//Dichiarazioni costanti
+//Const declaration
 const apiUrl = "https://striveschool-api.herokuapp.com/api/product/"
 
 const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGVhNGJlMTUxNWY0MTAwMTQ2OTdhMmYiLCJpYXQiOjE2OTMwNzY0NTAsImV4cCI6MTY5NDI4NjA1MH0.GLbruDI2UUxg85xnQxE0hVnzqR1iBCI3sEdbzhqNYuw"
 
-//Funzione per fetch GET di tutti i prodotti
+//Fetch GET function for all products
 async function fetchProducts() {
     try {
       const response = await fetch(`${apiUrl}`, {
@@ -20,7 +20,7 @@ async function fetchProducts() {
 }
 
 
-//Funzione per stampa nel DOM dei risultati del fetch GET
+//Print function to DOM for Fetch GET all products
 const printProduct = (allProducts) => {
   const productList = document.getElementById("productsList")
   productList.innerHTML = ''
@@ -31,7 +31,7 @@ const printProduct = (allProducts) => {
   
 
   allProducts.forEach(element => {
-    //decodifica stringhe per gestione caratteri speciali
+    //string decode for special charachter control
     const name = decodeURIComponent(element.name)
     const description = decodeURIComponent(element.description)
     const brand = decodeURIComponent(element.brand)
@@ -59,5 +59,5 @@ const printProduct = (allProducts) => {
   }, 250)
 }
 
-//Richiamo funzione fetch e stampa su DOM
+//Call Fetch function and print to DOM
 fetchProducts()
