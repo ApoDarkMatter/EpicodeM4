@@ -1,4 +1,4 @@
-//Dischiarazioni costanti elementi HRML e query da URL
+//Const declaration HTML element and URL query
 const apiUrl = "https://striveschool-api.herokuapp.com/api/product/"
 
 const main = document.getElementById('main-product');
@@ -8,7 +8,7 @@ const id = params.get("id")
 
 const token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGVhNGJlMTUxNWY0MTAwMTQ2OTdhMmYiLCJpYXQiOjE2OTMwNzY0NTAsImV4cCI6MTY5NDI4NjA1MH0.GLbruDI2UUxg85xnQxE0hVnzqR1iBCI3sEdbzhqNYuw"
 
-//Funzione per fetch GET singolo prodotto
+//Fetch GET function to get only one product
 async function fetchOneProduct(id) {
     try {
         const response = await fetch(`${apiUrl}${id}`, {
@@ -24,9 +24,9 @@ async function fetchOneProduct(id) {
     }
 }
 
-//Funzione per stampa del singolo prodotto nel DOM
+//Function to print only one product in the DOM
 const printFormProduct = (product) => {
-    //decodifica stringhe per gestione caratteri speciali
+    //String decoding to prevent error for special carachter
     const name = decodeURIComponent(product.name)
     const description = decodeURIComponent(product.description)
     const brand = decodeURIComponent(product.brand)
@@ -50,5 +50,5 @@ const printFormProduct = (product) => {
                     `
 };
 
-//Richiamo della funzione di fetch e stampa
+//Function call to fetch and print
 fetchOneProduct(id)
